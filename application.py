@@ -64,7 +64,7 @@ class ToDoListApp:
             return
 
         # Validate deadline
-        if deadline:
+        if deadline and deadline != "YYYY-MM-DD":
             try:
                 deadline_date = datetime.strptime(deadline, "%Y-%m-%d").date()
             except ValueError:
@@ -81,6 +81,7 @@ class ToDoListApp:
         self.task_entry.delete(0, tk.END)
         self.deadline_entry.delete(0, tk.END)
         self.deadline_entry.insert(0, "YYYY-MM-DD")
+
 
     def mark_task_done(self):
         """Mark the selected task as done."""
