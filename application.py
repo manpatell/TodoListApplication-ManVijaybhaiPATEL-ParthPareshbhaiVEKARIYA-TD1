@@ -28,6 +28,9 @@ class ToDoListApp:
         delete_button = tk.Button(root, text="Delete Task", command=self.delete_task)
         delete_button.grid(row=2, column=1, padx=5)
 
+        clear_all_button = tk.Button(root, text="Clear All Tasks", command=self.clear_all_tasks)
+        clear_all_button.grid(row=3, column=0, columnspan=2, padx=10, pady=5)
+
         quit_button = tk.Button(root, text="Quit", command=root.quit)
         quit_button.grid(row=2, column=2, padx=10, pady=5)
 
@@ -58,6 +61,16 @@ class ToDoListApp:
             self.update_task_listbox()
         except IndexError:
             messagebox.showwarning("Selection Error", "Please select a task to delete.")
+
+    def clear_all_tasks(self):
+        """Clear all tasks from the list."""
+        confirmation = messagebox.askyesno("Confirmation", "Are you sure you want to clear all tasks?")
+        if confirmation:
+            self.tasks.clear()
+            self.update_task_listbox()
+            messagebox.showinfo("Success", "All tasks have been cleared.")
+        else:
+            messagebox.showinfo("Canceled", "Operation canceled.")
 
     def update_task_listbox(self):
         """Update the listbox to display all tasks."""
